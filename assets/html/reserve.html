@@ -60,10 +60,13 @@
 
     <p class="mt-3"></p>
     <a href="api/tables">API Table</a> | <a href="api/waitlist">API Wait List</a></p>
+
     <!-- closing div for container -->
     </div>
+
     <!-- script tags go here -->
     <script type="text/javascript">
+
     //on click for submit button
     $("#reserve-button").on("click", function (event) {
         event.preventDefault();
@@ -77,15 +80,23 @@
         };
 
         //Create new reservations
-        $.post("/api/reserved", newReservation)
-        .then(function(data) {
-            if (data) {
-            alert("Your reservation has been made.")
-            } else {
-            alert ("You have been added to the wait list.")
-            }
-        })
-    })
+        $.post("/api/reserved", newReservation, function(data) 
+            {
+                //If a reservation is available
+                if (data) {
+                alert("Your reservation has been made.")
+                } else {
+                //If reservations are full
+                alert ("You have been added to the wait list.")
+                }
+
+                //clear form once data submitted
+                $("#reserve-name").val("");
+                $("#reserve-phone").val("");
+                $("#reserve-email").val("");
+                $("#reserve-unique-id").val("");
+        });
+    });
     </script>
         
 </body>
