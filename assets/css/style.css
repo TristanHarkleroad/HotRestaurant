@@ -1,13 +1,12 @@
 body {
-  font-family: ‘Work Sans’, sans-serif; 
+    font-family: ‘Work Sans’, sans-serif;
+   
 }
-  
+
 .jumbotron {
-  background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(186, 204, 156));
-  text-align: center;
+    background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(186, 204, 156));
+    text-align: center;
 }
-
 h1 {
-  font-size: 40pt;
-
+    font-size: 40pt;
 }
