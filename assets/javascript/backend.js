@@ -14,16 +14,9 @@ app.use(express.json());
 
 // Reserved and Waiting List Data
 // =============================================================
-var reservedList = [
-  {
-    routeName: routeName,
-    phoneNum: phoneNum,
-    email: email,
-    uniqueID: uniqueID
-  }
-];
+var reservedList = [];
 
-var waitingList = []
+var waitingList = [];
 // Routes
 // =============================================================
 
@@ -56,10 +49,6 @@ app.post("/api/reserved", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   var newReservation = req.body;
-
-  // Using a RegEx Pattern to remove spaces from newReservation
-  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newReservation.uniqueID = reservedList.routeName.replace(/\s+/g, "").toLowerCase();
 
   console.log(newReservation)
  if (reservedList.length < 5){
