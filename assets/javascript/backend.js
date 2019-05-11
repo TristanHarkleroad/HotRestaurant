@@ -12,24 +12,11 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Variables for our reserved list and waiting list arrays
-var routeName = $("#routeName").val();
-var phoneNum = $("#phoneNum").val();
-var email = $("#email").val();
-var uniqueID = $("#uniqueID").val();
-
 // Reserved and Waiting List Data
 // =============================================================
-var reservedList = [
-  {
-    routeName: routeName,
-    phoneNum: phoneNum,
-    email: email,
-    uniqueID: uniqueID
-  }
-];
+var reservedList = [];
 
-var waitingList = []
+var waitingList = [];
 // Routes
 // =============================================================
 
@@ -48,7 +35,7 @@ app.get("/tables", function(req, res) {
 
 
 // Displays the reserved list
-app.get("/api/reserved", function(req, res) {
+app.get("/api/tables", function(req, res) {
   return res.json(reservedList);
 });
 
@@ -63,10 +50,6 @@ app.post("/api/reserved", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   var newReservation = req.body;
-
-  // Using a RegEx Pattern to remove spaces from newReservation
-  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newReservation.uniqueID = reservedList.routeName.replace(/\s+/g, "").toLowerCase();
 
   console.log(newReservation)
  if (reservedList.length < 5){
