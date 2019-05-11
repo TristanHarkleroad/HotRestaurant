@@ -44,7 +44,7 @@
   
 
     <p class="mt-3">Control Panel</p>
-    <a href="#">Clear Table</a> | <a href="/api/reserved">API Table</a> | <a href="/api/waitlist">API Wait List</a></p>
+    <a href="#">Clear Table</a> | <a href="/api/tables">API Table</a> | <a href="/api/waitlist">API Wait List</a></p>
 
   </div> <!-- End Container -->
 
@@ -52,14 +52,27 @@
 
     function getReservationData () {
       $.ajax({
-        url: 'http://hot-restaurant.herokuapp.com/api/tables',
+        url: 'api/tables',
         method: 'GET'
       }).done(data => {
         for (let i = 0; i < data.length; i++) {
           console.log(data[i])
           let newDiv = $('<div>')
-          newDiv.append(`<span class="badge badge-primary">${i + 1}</span> ${data[i].customerName}`)
-          // <p>${data.name}</p><p>${data.number}</p><p>${data.email}</p>
+          newDiv.append(`<span class="badge badge-primary">${i + 1}</span> ${data[i].name}`)
+          $('#waiting').append(newDiv)
+        }
+      })
+    }
+
+    function getReservationData () {
+      $.ajax({
+        url: 'api/waitlist',
+        method: 'GET'
+      }).done(data => {
+        for (let i = 0; i < data.length; i++) {
+          console.log(data[i])
+          let newDiv = $('<div>')
+          newDiv.append(`<span class="badge badge-danger">${i + 1}</span> ${data[i].name}`)
           $('#reservations').append(newDiv)
         }
       })
