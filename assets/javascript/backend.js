@@ -38,6 +38,7 @@ app.get("/tables", function(req, res) {
 app.get("/api/tables", function(req, res) {
   return res.json(reservedList);
 });
+
 // Displays the waiting list
 app.get("/api/waitlist", function(req, res) {
   return res.json(waitingList);
