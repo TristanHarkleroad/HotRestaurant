@@ -20,8 +20,8 @@
     <div class="jumbotron">
       <h1> Hot Restaurant </h1>
       <h4> Get Your Table Now </h4>
-      <a href="/reserve>"><button type="button"  class="btn btn-primary">Reserve Table</button></a>
-      <a href="/home"><button type="button" href="/home" class="btn btn-light">Home</button></a>
+      <a href="/reserved"><button type="button"  class="btn btn-primary">Reserve Table</button></a>
+      <a href="/"><button type="button" class="btn btn-light">Home</button></a>
     </div>
 
     <!-- Reservations Cards -->
@@ -29,7 +29,7 @@
       <div class="card-header">
         Current Reservations
       </div>
-      <div class="card-body">
+      <div class="card-body" id="reservations">
       </div>
     </div>
 
@@ -38,7 +38,7 @@
       <div class="card-header">
         Waiting List
       </div>
-      <div class="card-body">
+      <div class="card-body" id="waiting">
       </div>
     </div>
   
@@ -47,7 +47,41 @@
     <a href="#">Clear Table</a> | <a href="/api/tables">API Table</a> | <a href="/api/waitlist">API Wait List</a></p>
 
   </div> <!-- End Container -->
-  <script src="../javascript/backend.js"></script>
+
+  <script>
+
+    function getReservationData () {
+      $.ajax({
+        url: 'api/tables',
+        method: 'GET'
+      }).done(data => {
+        for (let i = 0; i < data.length; i++) {
+          console.log(data[i])
+          let newDiv = $('<div>')
+          newDiv.append(`<span class="badge badge-primary">${i + 1}</span> ${data[i].name}`)
+          $('#waiting').append(newDiv)
+        }
+      })
+    }
+
+    function getReservationData () {
+      $.ajax({
+        url: 'api/waitlist',
+        method: 'GET'
+      }).done(data => {
+        for (let i = 0; i < data.length; i++) {
+          console.log(data[i])
+          let newDiv = $('<div>')
+          newDiv.append(`<span class="badge badge-danger">${i + 1}</span> ${data[i].name}`)
+          $('#reservations').append(newDiv)
+        }
+      })
+    }
+
+    getReservationData()
+
+  </script>
+
 </body>
 
 </html>
