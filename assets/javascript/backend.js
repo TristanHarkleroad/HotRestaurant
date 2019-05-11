@@ -12,12 +12,6 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Variables for our reserved list and waiting list arrays
-var routeName = $("#routeName").val();
-var phoneNum = $("#phoneNum").val();
-var email = $("#email").val();
-var uniqueID = $("#uniqueID").val();
-
 // Reserved and Waiting List Data
 // =============================================================
 var reservedList = [
@@ -48,7 +42,7 @@ app.get("/tables", function(req, res) {
 
 
 // Displays the reserved list
-app.get("/api/reserved", function(req, res) {
+app.get("/api/tables", function(req, res) {
   return res.json(reservedList);
 });
 // Displays the waiting list
